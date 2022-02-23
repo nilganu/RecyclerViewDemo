@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.recycleitem.view.*
 
 class MyAdapter(var arrStudent:ArrayList<Student>)
@@ -31,6 +32,13 @@ class MyAdapter(var arrStudent:ArrayList<Student>)
     class ViewHolder(var viewItem:View):
         RecyclerView.ViewHolder(viewItem)
     {
+        init {
+            viewItem.setOnClickListener {
+                var msg="Item Clicked on position" +
+                        " $adapterPosition"
+                Snackbar.make(viewItem,msg,Snackbar.LENGTH_LONG).show()
+            }
+        }
         fun bind(student:Student)
         {
             viewItem.txtStudentName.text=student.name
